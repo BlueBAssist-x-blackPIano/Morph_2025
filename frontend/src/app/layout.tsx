@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 
-import Web3Provider from "@/components/Web3Provider"; // use your path!@/components/homePage/Web3Provider
+import Web3Provider from "@/components/essentialUtils/Web3Provider";
+import { ThemeProvider } from "@/components/essentialUtils/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Web3Provider>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+          >
+            {children}
+          </ThemeProvider>
         </Web3Provider>
       </body>
     </html>

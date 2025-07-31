@@ -3,11 +3,12 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion } from 'framer-motion'
 import { Wallet, CreditCard, BarChart3 } from 'lucide-react'
+import { ModeToggle } from '../essentialUtils/ModeToggle'
 
 export const ConnectToWallet = () => {
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-50 flex flex-col items-center px-4 py-12"
+      className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-50 dark:from-gray-900 dark:to-gray-950 flex flex-col items-center px-4 py-12"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -19,8 +20,8 @@ export const ConnectToWallet = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
-        <Wallet className="w-8 h-8 text-blue-600" />
-        <h1 className="text-3xl font-bold text-gray-800">SafeSpend</h1>
+        <Wallet className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">SafeSpend</h1>
       </motion.div>
 
       {/* Hero Text */}
@@ -30,10 +31,10 @@ export const ConnectToWallet = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-4">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800 dark:text-white mb-4">
           Smarter Family Wallets.
         </h2>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-gray-600 dark:text-gray-300">
           SafeSpend empowers families or groups to manage shared finances with customizable spending caps,
           categorized budgets, and insightful monthly reports — built on secure blockchain infrastructure.
         </p>
@@ -55,23 +56,23 @@ export const ConnectToWallet = () => {
         {[
           {
             title: 'Spending Limits',
-            icon: <CreditCard className="text-blue-600 w-6 h-6" />,
+            icon: <CreditCard className="text-blue-600 dark:text-blue-400 w-6 h-6" />,
             desc: 'Set custom spending limits per member to ensure control and avoid overuse.'
           },
           {
             title: 'Category Control',
-            icon: <Wallet className="text-blue-600 w-6 h-6" />,
+            icon: <Wallet className="text-blue-600 dark:text-blue-400 w-6 h-6" />,
             desc: 'Restrict or monitor usage by categories like groceries, gaming, or subscriptions.'
           },
           {
             title: 'Monthly Reports',
-            icon: <BarChart3 className="text-blue-600 w-6 h-6" />,
+            icon: <BarChart3 className="text-blue-600 dark:text-blue-400 w-6 h-6" />,
             desc: 'Visual summaries and analytics of how funds were used across the group.'
           }
         ].map((item, idx) => (
           <motion.div
             key={idx}
-            className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg hover:rotate-1 hover:scale-105 transition-transform ease-in-out"
+            className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-2xl p-6 shadow-md dark:shadow-none hover:shadow-lg hover:rotate-1 hover:scale-105 transition-transform ease-in-out"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 }
@@ -79,9 +80,9 @@ export const ConnectToWallet = () => {
           >
             <div className="flex items-center gap-3 mb-3">
               {item.icon}
-              <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{item.title}</h3>
             </div>
-            <p className="text-sm text-gray-600">{item.desc}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">{item.desc}</p>
           </motion.div>
         ))}
       </motion.div>
@@ -94,6 +95,11 @@ export const ConnectToWallet = () => {
       >
         <ConnectButton />
       </motion.div>
+      
+      {/* Separate theme toggle button — fixed at top right */}
+      <div className="fixed top-4 right-4 z-50">
+        <ModeToggle />
+      </div>
     </motion.div>
   )
 }
